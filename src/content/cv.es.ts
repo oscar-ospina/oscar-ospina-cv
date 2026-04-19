@@ -3,7 +3,7 @@ import type { CvData } from "./types";
 export const cvEs: CvData = {
   name: "Oscar Ospina",
   role: "Lead · Senior Fullstack Developer",
-  experience: "13+ años",
+  careerStartYear: 2013,
   tagline: "Puedo construir lo que sueñes.",
   summary:
     "Senior Full Stack Developer con 13+ años diseñando sistemas distribuidos y aplicaciones de alto rendimiento. Experto en TypeScript/Node.js, React y plataformas cloud (GCP/AWS/Azure). Historial comprobado escalando microservicios a millones de usuarios con latencia sub-segundo.",
@@ -12,8 +12,11 @@ export const cvEs: CvData = {
     email: "osdao.lopez@gmail.com",
     phone: "+57 319 404 9005",
     linkedin: "linkedin.com/in/oscar-david-ospina-65b94451",
+    linkedinHandle: "oscar-david-ospina",
     github: "github.com/oscar-ospina",
+    githubHandle: "oscar-ospina",
     stackoverflow: "stackoverflow.com/users/4070633/sxntk",
+    stackoverflowHandle: "sxntk",
   },
   jobs: [
     {

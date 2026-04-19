@@ -10,18 +10,19 @@ import { SmoothScroll } from "@/components/chrome/SmoothScroll";
 export async function generateMetadata({ params }: PageProps<"/[lang]">): Promise<Metadata> {
   const { lang } = await params;
   if (!hasLocale(lang)) return {};
-  const { cv } = getContent(lang);
+  const { cv, ui } = getContent(lang);
 
-  const title = `${cv.name} — Senior Fullstack Developer`;
+  const title = `${cv.name} — ${ui.meta.titleRole}`;
   const description = cv.summary;
   const canonical = lang === "en" ? "/" : `/${lang}`;
 
   return {
-    title,
+    title: { absolute: title },
     description,
     alternates: {
       canonical,
       languages: {
+        "x-default": "/",
         en: "/",
         es: "/es",
       },

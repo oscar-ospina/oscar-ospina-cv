@@ -62,7 +62,7 @@ export function Hero({ cv, ui }: { cv: CvData; ui: UiStrings }) {
             encoded={encodeContact(cv.contact.email)}
             labelClosed={ui.reveal.showEmail}
             ariaLabel={ui.reveal.revealEmailAria}
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-medium border border-(--color-line-2) hover:bg-black/5 transition-colors"
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-medium border border-(--color-line-2) hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
           />
         </div>
       </div>

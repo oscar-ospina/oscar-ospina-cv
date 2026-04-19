@@ -13,11 +13,21 @@ function pickLocale(acceptLanguage: string | null): string {
   return DEFAULT_LOCALE;
 }
 
+function withLocaleHeader(request: NextRequest, locale: string): Headers {
+  const headers = new Headers(request.headers);
+  headers.set("x-locale", locale);
+  return headers;
+}
+
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   const firstSegment = pathname.split("/")[1];
-  if (hasLocale(firstSegment)) return NextResponse.next();
+  if (hasLocale(firstSegment)) {
+    return NextResponse.next({
+      request: { headers: withLocaleHeader(request, firstSegment) },
+    });
+  }
 
   if (pathname !== "/") return NextResponse.next();
 
@@ -29,7 +39,9 @@ export function proxy(request: NextRequest) {
   if (chosen === DEFAULT_LOCALE) {
     const rewriteUrl = request.nextUrl.clone();
     rewriteUrl.pathname = `/${DEFAULT_LOCALE}`;
-    const response = NextResponse.rewrite(rewriteUrl);
+    const response = NextResponse.rewrite(rewriteUrl, {
+      request: { headers: withLocaleHeader(request, DEFAULT_LOCALE) },
+    });
     if (!cookieLocale) response.cookies.set("NEXT_LOCALE", DEFAULT_LOCALE, { path: "/" });
     return response;
   }

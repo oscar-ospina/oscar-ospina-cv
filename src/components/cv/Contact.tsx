@@ -12,9 +12,9 @@ export function Contact({ cv, ui }: { cv: CvData; ui: UiStrings }) {
     { k: ui.contactRows.email, kind: "reveal", which: "email" },
     { k: ui.contactRows.phone, kind: "reveal", which: "phone" },
     { k: ui.contactRows.location, kind: "text", v: cv.location },
-    { k: ui.contactRows.linkedin, kind: "link", v: "oscar-david-ospina", href: `https://${cv.contact.linkedin}` },
-    { k: ui.contactRows.github, kind: "link", v: "oscar-ospina", href: `https://${cv.contact.github}` },
-    { k: ui.contactRows.stackoverflow, kind: "link", v: "sxntk", href: `https://${cv.contact.stackoverflow}` },
+    { k: ui.contactRows.linkedin, kind: "link", v: cv.contact.linkedinHandle, href: `https://${cv.contact.linkedin}` },
+    { k: ui.contactRows.github, kind: "link", v: cv.contact.githubHandle, href: `https://${cv.contact.github}` },
+    { k: ui.contactRows.stackoverflow, kind: "link", v: cv.contact.stackoverflowHandle, href: `https://${cv.contact.stackoverflow}` },
   ];
 
   return (

@@ -1,6 +1,15 @@
 import type { UiStrings } from "./types";
 
 export const uiEs: UiStrings = {
+  meta: {
+    titleRole: "Desarrollador Senior Fullstack",
+  },
+  a11y: {
+    skipToContent: "Saltar al contenido",
+  },
+  experience: {
+    yearsSuffix: "+ años",
+  },
   nav: {
     experience: "Experiencia",
     skills: "Skills",
@@ -37,9 +46,25 @@ export const uiEs: UiStrings = {
     github: "GitHub",
     stackoverflow: "Stack Overflow",
   },
+  jobs: {
+    team: "Equipo",
+  },
+  skillGroups: {
+    Languages: "Lenguajes",
+    Frontend: "Frontend",
+    Backend: "Backend",
+    Databases: "Bases de datos",
+    Cloud: "Cloud",
+    DevOps: "DevOps",
+    Observability: "Observabilidad",
+    Testing: "Testing",
+    Messaging: "Mensajería",
+    APIs: "APIs",
+  },
   footer: {
     heading: "Vamos a",
     headingEm: "construir",
+    headingAfter: "algo.",
     subtitle: "Disponible para roles senior y lead fullstack. Remote-first, basado en Medellín.",
   },
   reveal: {

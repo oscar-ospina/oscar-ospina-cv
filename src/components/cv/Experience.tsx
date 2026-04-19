@@ -9,7 +9,7 @@ export function Experience({ cv, ui }: { cv: CvData; ui: UiStrings }) {
         {ui.sections.experienceHeading}
       </h3>
       {cv.jobs.map((job, idx) => (
-        <Job key={job.company} job={job} isCurrent={idx === 0} />
+        <Job key={job.company} job={job} isCurrent={idx === 0} ui={ui} />
       ))}
     </section>
   );

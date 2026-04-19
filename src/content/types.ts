@@ -10,8 +10,11 @@ export type Contact = {
   email: string;
   phone: string;
   linkedin: string;
+  linkedinHandle: string;
   github: string;
+  githubHandle: string;
   stackoverflow: string;
+  stackoverflowHandle: string;
 };
 
 export type Highlight = {
@@ -54,7 +57,7 @@ export type Education = {
 export type CvData = {
   name: string;
   role: string;
-  experience: string;
+  careerStartYear: number;
   tagline: string;
   summary: string;
   location: string;
@@ -67,6 +70,15 @@ export type CvData = {
 };
 
 export type UiStrings = {
+  meta: {
+    titleRole: string;
+  };
+  a11y: {
+    skipToContent: string;
+  };
+  experience: {
+    yearsSuffix: string;
+  };
   nav: {
     experience: string;
     skills: string;
@@ -103,9 +115,25 @@ export type UiStrings = {
     github: string;
     stackoverflow: string;
   };
+  jobs: {
+    team: string;
+  };
+  skillGroups: {
+    Languages: string;
+    Frontend: string;
+    Backend: string;
+    Databases: string;
+    Cloud: string;
+    DevOps: string;
+    Observability: string;
+    Testing: string;
+    Messaging: string;
+    APIs: string;
+  };
   footer: {
     heading: string;
     headingEm: string;
+    headingAfter: string;
     subtitle: string;
   };
   reveal: {
@@ -129,3 +157,7 @@ export type UiStrings = {
     backHome: string;
   };
 };
+
+export function yearsOfExperience(careerStartYear: number, now: Date = new Date()): number {
+  return now.getFullYear() - careerStartYear;
+}

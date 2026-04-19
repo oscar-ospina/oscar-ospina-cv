@@ -1,6 +1,14 @@
-import type { Job as JobT } from "@/content/types";
+import type { Job as JobT, UiStrings } from "@/content/types";
 
-export function Job({ job, isCurrent }: { job: JobT; isCurrent: boolean }) {
+export function Job({
+  job,
+  isCurrent,
+  ui,
+}: {
+  job: JobT;
+  isCurrent: boolean;
+  ui: UiStrings;
+}) {
   return (
     <article
       className="relative pl-6 pb-10 border-l border-(--color-line) last:border-l-transparent last:pb-0"
@@ -29,7 +37,9 @@ export function Job({ job, isCurrent }: { job: JobT; isCurrent: boolean }) {
       </header>
 
       {job.team && (
-        <div className="text-[13px] text-(--color-ink-3) mb-4">Team: {job.team}</div>
+        <div className="text-[13px] text-(--color-ink-3) mb-4">
+          {ui.jobs.team}: {job.team}
+        </div>
       )}
 
       <p className="text-sm leading-[1.55] text-(--color-ink-2) mb-4 max-w-[620px]">

@@ -8,7 +8,7 @@ export function FooterCta({ cv, ui }: { cv: CvData; ui: UiStrings }) {
       <h3 className="font-(family-name:--font-display) text-[clamp(40px,6vw,72px)] font-semibold tracking-[-0.03em] leading-none mb-6">
         {ui.footer.heading}{" "}
         <em className="not-italic italic font-normal text-(--color-accent)">{ui.footer.headingEm}</em>{" "}
-        something.
+        {ui.footer.headingAfter}
       </h3>
       <p className="text-(--color-ink-3) text-base max-w-[480px] mx-auto">{ui.footer.subtitle}</p>
       <div className="flex flex-wrap gap-2.5 justify-center mt-6">

@@ -34,7 +34,7 @@ export default async function LangLayout({
   return (
     <div className={`${geist.variable} ${jetbrains.variable}`}>
       <a href="#doc" className="skip-link">
-        {ui.notFound.backHome}
+        {ui.a11y.skipToContent}
       </a>
       <ScrollProgress />
       <StickyNav lang={lang} ui={ui} cv={cv} />

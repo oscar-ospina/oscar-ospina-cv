@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { CvData, UiStrings } from "@/content/types";
+import { yearsOfExperience } from "@/content/types";
 import { RevealContact } from "@/components/contact/RevealContact";
 import { encodeContact } from "@/content/encode";
 import { Summary } from "./Summary";
@@ -11,6 +12,7 @@ import { Experience } from "./Experience";
 import { Skills } from "./Skills";
 
 export function CvDocument({ cv, ui }: { cv: CvData; ui: UiStrings }) {
+  const years = yearsOfExperience(cv.careerStartYear);
   return (
     <main id="doc" className="doc relative z-[2] max-w-[1200px] mx-auto px-8 pt-10 pb-32">
       <header className="grid grid-cols-[auto_1fr_auto] gap-6 items-center pb-6 mb-10 border-b border-(--color-line)">
@@ -24,7 +26,8 @@ export function CvDocument({ cv, ui }: { cv: CvData; ui: UiStrings }) {
         <div>
           <h2 className="text-[22px] font-semibold tracking-[-0.02em]">{cv.name}</h2>
           <div className="font-mono-micro text-[11px] text-(--color-ink-3) tracking-wider uppercase mt-1">
-            {cv.role} · {cv.experience}
+            {cv.role} · {years}
+            {ui.experience.yearsSuffix}
           </div>
         </div>
         <div className="flex gap-2">
