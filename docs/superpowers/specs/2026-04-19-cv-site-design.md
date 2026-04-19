@@ -48,19 +48,20 @@ The design is locked; this spec does not revisit visual choices.
 EN is the default at `/`. ES lives at `/es`. Path-based, one canonical URL per locale.
 
 ```
-src/app/
-  [lang]/
-    layout.tsx          # <html lang={lang}>, fonts, theme init, sticky nav
-    page.tsx            # the CV page
-    not-found.tsx       # scoped 404 per-locale
-  layout.tsx            # minimal root; required by App Router
-  proxy.ts              # Next.js 16 "proxy" (renamed from middleware)
-  sitemap.ts
-  robots.ts
-  icon.tsx              # favicon via ImageResponse
+src/
+  proxy.ts              # Next.js 16 "proxy" (renamed from middleware); sibling of app/
+  app/
+    [lang]/
+      layout.tsx        # <html lang={lang}>, fonts, theme init, sticky nav
+      page.tsx          # the CV page
+      not-found.tsx     # scoped 404 per-locale
+    layout.tsx          # minimal root; required by App Router
+    sitemap.ts
+    robots.ts
+    icon.tsx            # favicon via ImageResponse
 ```
 
-**Proxy behavior** (`src/app/proxy.ts`):
+**Proxy behavior** (`src/proxy.ts`):
 
 - If pathname starts with `/es` — pass through untouched.
 - If pathname is `/` — rewrite to `/en` internally (URL in the browser stays as `/`). On first visit, if `Accept-Language` prefers `es`, **redirect** to `/es`. On subsequent visits (detected via the `NEXT_LOCALE` cookie set by our locale toggle or by a prior redirect), skip detection and just rewrite to `/en`.
