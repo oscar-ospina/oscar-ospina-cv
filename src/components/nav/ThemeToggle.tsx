@@ -13,21 +13,20 @@ function applyMode(mode: Mode) {
 }
 
 export function ThemeToggle({ ui }: { ui: UiStrings["toggles"] }) {
-  const [mode, setMode] = useState<Mode>("system");
+  const [mode, setMode] = useState<Mode>(() => {
+    if (typeof window === "undefined") return "system";
+    const stored = localStorage.getItem("theme");
+    return stored === "light" || stored === "dark" ? stored : "system";
+  });
 
   useEffect(() => {
-    const stored = localStorage.getItem("theme");
-    const initial: Mode = stored === "light" || stored === "dark" ? stored : "system";
-    setMode(initial);
-    applyMode(initial);
-
-    if (initial === "system") {
-      const mql = window.matchMedia("(prefers-color-scheme: dark)");
-      const listener = () => applyMode("system");
-      mql.addEventListener("change", listener);
-      return () => mql.removeEventListener("change", listener);
-    }
-  }, []);
+    applyMode(mode);
+    if (mode !== "system") return;
+    const mql = window.matchMedia("(prefers-color-scheme: dark)");
+    const listener = () => applyMode("system");
+    mql.addEventListener("change", listener);
+    return () => mql.removeEventListener("change", listener);
+  }, [mode]);
 
   function cycle() {
     const next: Mode = mode === "system" ? "light" : mode === "light" ? "dark" : "system";
