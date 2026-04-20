@@ -46,7 +46,7 @@ export function StickyNav({
           encoded={encodeContact(cv.contact.email)}
           labelClosed={ui.nav.cta}
           ariaLabel={ui.reveal.revealEmailAria}
-          className="bg-(--color-ink) text-(--color-paper) px-3.5 py-2 rounded-md text-[13px] font-medium hover:-translate-y-px transition-transform inline-flex items-center"
+          className="bg-(--color-accent) text-white px-3.5 py-2 rounded-md text-[13px] font-medium hover:bg-(--color-accent-2) hover:-translate-y-px transition-all inline-flex items-center"
         />
       </div>
     </nav>
