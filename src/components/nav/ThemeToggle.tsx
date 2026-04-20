@@ -13,11 +13,16 @@ function applyMode(mode: Mode) {
 }
 
 export function ThemeToggle({ ui }: { ui: UiStrings["toggles"] }) {
-  const [mode, setMode] = useState<Mode>(() => {
-    if (typeof window === "undefined") return "system";
+  const [mode, setMode] = useState<Mode>("system");
+
+  useEffect(() => {
     const stored = localStorage.getItem("theme");
-    return stored === "light" || stored === "dark" ? stored : "system";
-  });
+    const initial: Mode = stored === "light" || stored === "dark" ? stored : "system";
+    // localStorage is an external system; syncing it into state post-hydration is
+    // the React-recommended pattern and avoids an SSR/CSR text mismatch.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMode(initial);
+  }, []);
 
   useEffect(() => {
     applyMode(mode);
