@@ -12,10 +12,10 @@ export const uiEs: UiStrings = {
   },
   nav: {
     experience: "Experiencia",
-    skills: "Skills",
-    certs: "Certs",
+    skills: "Habilidades",
+    certs: "Certificaciones",
     contact: "Contacto",
-    cta: "Contáctame →",
+    cta: "Di hola →",
     roleSuffix: "· Senior Fullstack",
   },
   hero: {
@@ -25,7 +25,7 @@ export const uiEs: UiStrings = {
   },
   docHeader: {
     linkedin: "LinkedIn ↗",
-    hireMe: "Contrátame",
+    hireMe: "Saluda",
   },
   sections: {
     summary: "Resumen",

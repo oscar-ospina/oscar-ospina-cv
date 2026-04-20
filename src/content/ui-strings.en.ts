@@ -15,17 +15,17 @@ export const uiEn: UiStrings = {
     skills: "Skills",
     certs: "Certs",
     contact: "Contact",
-    cta: "Get in touch →",
+    cta: "Say hi →",
     roleSuffix: "· Senior Fullstack",
   },
   hero: {
-    eyebrow: "No available for senior / lead roles",
+    eyebrow: "Not available for senior / lead roles",
     ctaSeeExperience: "See experience →",
     scrollHint: "scroll",
   },
   docHeader: {
     linkedin: "LinkedIn ↗",
-    hireMe: "Hire me",
+    hireMe: "Say hi",
   },
   sections: {
     summary: "Summary",

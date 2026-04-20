@@ -30,7 +30,7 @@ export function LocaleToggle({
       <button
         type="button"
         onClick={() => goto("en")}
-        aria-pressed={lang === "en"}
+        aria-current={lang === "en" ? "page" : undefined}
         className={`px-2 py-1 transition-colors ${lang === "en" ? "text-(--color-ink)" : "text-(--color-ink-4) hover:text-(--color-ink-2)"}`}
       >
         {ui.localeEn}
@@ -39,7 +39,7 @@ export function LocaleToggle({
       <button
         type="button"
         onClick={() => goto("es")}
-        aria-pressed={lang === "es"}
+        aria-current={lang === "es" ? "page" : undefined}
         className={`px-2 py-1 transition-colors ${lang === "es" ? "text-(--color-ink)" : "text-(--color-ink-4) hover:text-(--color-ink-2)"}`}
       >
         {ui.localeEs}

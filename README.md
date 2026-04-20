@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Oscar Ospina — CV site
 
-## Getting Started
+Personal CV site for Oscar Ospina. Hero + scrollable CV document, bilingual (EN/ES), light/dark/system theme, click-to-reveal contact to deter scraping.
 
-First, run the development server:
+## Stack
+
+- **Next.js 16.2** (App Router, `proxy.ts`, async `params`)
+- **React 19.2**
+- **Tailwind CSS v4** (`@theme`, `@custom-variant dark`)
+- **TypeScript 6**
+- **@vercel/analytics**
+
+## Scripts
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run dev        # start dev server at http://localhost:3000
+npm run build      # production build
+npm run start      # run production build
+npm run lint       # eslint
+npm run typecheck  # tsc --noEmit
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project layout
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+src/
+  app/
+    layout.tsx            # root layout, reads x-locale header → <html lang>
+    [lang]/
+      layout.tsx          # per-locale skip-link, sticky nav, footer
+      page.tsx            # hero + CV document
+    icon.tsx              # dynamic favicon
+    opengraph-image.tsx   # dynamic OG image
+  proxy.ts                # locale rewrite + x-locale header injection
+  content/
+    cv.en.ts, cv.es.ts    # CV data (role, jobs, skills, certs, contact)
+    ui-strings.en.ts, ui-strings.es.ts  # UI copy
+    types.ts              # CvData / UiStrings / Locale / yearsOfExperience
+    encode.ts             # base64 + "x" salt contact obfuscation
+  components/
+    nav/          StickyNav, LocaleToggle, ThemeToggle
+    hero/         Hero, HeroTitle (typewriter)
+    cv/           CvDocument, Job, Skills, Contact, …
+    contact/      RevealContact (click-to-reveal)
+    footer/       FooterCta
+    chrome/       SmoothScroll
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## How things work
 
-## Learn More
+- **Locale routing.** `proxy.ts` rewrites `/es/*` to `/[lang]/*`, passes an `x-locale` header to the server so the root layout can set `<html lang>` correctly. The locale cookie (`NEXT_LOCALE`) steers the redirect at `/`.
+- **Years of experience.** Single source of truth is `cv.careerStartYear` (number). `yearsOfExperience()` computes the current value; copy uses `ui.experience.yearsSuffix`.
+- **Contact reveal.** Email/phone live encoded in the DOM (base64 + single-char salt). `RevealContact` decodes on click, preventing trivial scraping while keeping a crawlable `mailto`/`tel` label once revealed.
+- **Theme.** `ThemeToggle` writes `data-theme` on `<html>` and persists to `localStorage`. System mode follows `prefers-color-scheme`. State is synced in an effect post-hydration to avoid SSR/CSR mismatch.
+- **Hero typewriter.** `HeroTitle` animates "Oscar Ospina." once per session (`sessionStorage`-gated). SSR renders the full text; `prefers-reduced-motion` skips the animation.
+- **SEO.** JSON-LD `Person` schema in `[lang]/page.tsx` (no email/phone, to match the reveal-behind-click UX). `alternates.languages` includes `x-default`. Dynamic OG image and favicon via `ImageResponse`.
+- **a11y.** Skip link, semantic landmarks, `aria-current="page"` on the active locale, reduced-motion respected in typewriter and scroll animations.
 
-To learn more about Next.js, take a look at the following resources:
+## Editing content
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Role / jobs / skills / certs / contact** — `src/content/cv.{en,es}.ts`
+- **UI copy** (nav, hero, footer, toggles, section headings) — `src/content/ui-strings.{en,es}.ts`
+- **Skill group labels** — add to `ui.skillGroups` in both locales; the key must match the group name in `cv.skills`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deploy
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Deploys to Vercel. No environment variables required.
