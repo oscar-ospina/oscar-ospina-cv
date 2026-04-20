@@ -19,7 +19,7 @@ export const uiEs: UiStrings = {
     roleSuffix: "· Senior Fullstack",
   },
   hero: {
-    eyebrow: "Disponible para roles senior / lead",
+    eyebrow: "No disponible para roles senior / lead",
     ctaSeeExperience: "Ver experiencia →",
     scrollHint: "scroll",
   },
@@ -65,7 +65,8 @@ export const uiEs: UiStrings = {
     heading: "Vamos a",
     headingEm: "construir",
     headingAfter: "algo.",
-    subtitle: "Disponible para roles senior y lead fullstack. Remote-first, basado en Medellín.",
+    subtitle:
+      "No disponible para roles senior y lead fullstack. Remote-first, basado en Medellín.",
   },
   reveal: {
     showEmail: "Mostrar email",

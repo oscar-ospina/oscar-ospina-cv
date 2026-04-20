@@ -26,7 +26,7 @@ export function LocaleToggle({
   }
 
   return (
-    <div className="flex gap-1 font-mono-micro text-[11px] tracking-wider uppercase" aria-label={ui.localeLabel}>
+    <div className="flex items-center gap-1 font-mono-micro text-[11px] tracking-wider uppercase" aria-label={ui.localeLabel}>
       <button
         type="button"
         onClick={() => goto("en")}
