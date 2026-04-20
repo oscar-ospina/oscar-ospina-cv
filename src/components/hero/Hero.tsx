@@ -53,7 +53,7 @@ export function Hero({ cv, ui }: { cv: CvData; ui: UiStrings }) {
         <div className="flex gap-2.5 mt-2">
           <a
             href="#experience"
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-medium bg-(--color-ink) text-(--color-paper) border border-(--color-ink) hover:bg-(--color-ink-2) transition-colors"
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-medium bg-(--color-accent) text-white border border-(--color-accent) hover:bg-(--color-accent-2) transition-colors"
           >
             {ui.hero.ctaSeeExperience}
           </a>
