@@ -13,7 +13,7 @@ export function SmoothScroll() {
       const el = document.getElementById(id);
       if (!el) return;
       e.preventDefault();
-      window.scrollTo({ top: el.offsetTop - 60, behavior: "smooth" });
+      window.scrollTo({ top: el.offsetTop - 72, behavior: "smooth" });
     }
     document.addEventListener("click", onClick);
     return () => document.removeEventListener("click", onClick);

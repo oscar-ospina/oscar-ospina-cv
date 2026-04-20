@@ -114,32 +114,27 @@ body::before {
   to   { opacity: 1; transform: none; }
 }
 
-/* Sticky nav appears past 55vh */
+/* Sticky nav — always visible from the top */
 .sticky-nav {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 50;
-  opacity: 0;
-  transform: translateY(-100%);
-  animation: nav-appear linear both;
-  animation-timeline: scroll(root block);
-  animation-range: 55vh 65vh;
 }
-@keyframes nav-appear {
-  to { opacity: 1; transform: none; }
-}
+
+/* Anchor jumps clear the sticky nav */
+html { scroll-padding-top: 72px; }
 
 /* Fallback: no scroll-driven animations */
 @supports not (animation-timeline: scroll()) {
   .hero, .doc { opacity: 1; transform: none; animation: none; }
-  .sticky-nav, .progress { display: none; }
+  .progress { display: none; }
 }
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .hero, .doc, .sticky-nav, .progress { animation: none; }
+  .hero, .doc, .progress { animation: none; }
   .hero, .doc { opacity: 1; transform: none; }
   .progress { transform: scaleX(0); }
 }
