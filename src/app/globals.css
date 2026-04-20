@@ -144,6 +144,23 @@ body::before {
   .progress { transform: scaleX(0); }
 }
 
+/* Typewriter caret for the hero heading */
+.hero-caret {
+  display: inline-block;
+  width: 0.06em;
+  height: 0.78em;
+  margin-left: 0.04em;
+  vertical-align: -0.04em;
+  background: var(--color-accent);
+  animation: hero-caret 0.85s step-end infinite;
+}
+@keyframes hero-caret {
+  50% { opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-caret { display: none; }
+}
+
 /* Pulse animation for the hero eyebrow dot */
 @keyframes pulse-ring {
   0%, 100% { box-shadow: 0 0 0 4px var(--color-accent-glow); }

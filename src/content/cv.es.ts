@@ -11,8 +11,8 @@ export const cvEs: CvData = {
   contact: {
     email: "osdao.lopez@gmail.com",
     phone: "+57 319 404 9005",
-    linkedin: "linkedin.com/in/oscar-david-ospina-65b94451",
-    linkedinHandle: "oscar-david-ospina",
+    linkedin: "www.linkedin.com/in/oscar-ospina-65b94451",
+    linkedinHandle: "oscar-ospina-65b94451",
     github: "github.com/oscar-ospina",
     githubHandle: "oscar-ospina",
     stackoverflow: "stackoverflow.com/users/4070633/sxntk",

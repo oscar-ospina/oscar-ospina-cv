@@ -2,6 +2,7 @@ import Image from "next/image";
 import type { CvData, UiStrings } from "@/content/types";
 import { RevealContact } from "@/components/contact/RevealContact";
 import { encodeContact } from "@/content/encode";
+import { HeroTitle } from "./HeroTitle";
 
 export function Hero({ cv, ui }: { cv: CvData; ui: UiStrings }) {
   return (
@@ -34,9 +35,7 @@ export function Hero({ cv, ui }: { cv: CvData; ui: UiStrings }) {
           {ui.hero.eyebrow}
         </div>
 
-        <h1 className="font-(family-name:--font-display) font-semibold text-[clamp(64px,11vw,148px)] leading-[0.92] tracking-[-0.04em]">
-          Oscar <em className="not-italic italic font-normal text-(--color-accent)">Ospina</em>.
-        </h1>
+        <HeroTitle />
 
         <p className="max-w-[600px] text-[clamp(20px,2.4vw,28px)] leading-[1.3] text-(--color-ink-2) tracking-[-0.01em]">
           {cv.tagline} {cv.summary.split(".")[0]}.
